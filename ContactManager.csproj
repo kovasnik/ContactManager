@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BLL\Interfaces\" />
-    <Folder Include="BLL\Services\" />
-    <Folder Include="Data\Interfaces\" />
-    <Folder Include="Data\Repository\" />
-    <Folder Include="Helpers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1">

@@ -1,10 +1,17 @@
+using ContactManager.BLL.Interfaces;
+using ContactManager.BLL.Services;
 using ContactManager.Data;
+using ContactManager.Data.Interfaces;
+using ContactManager.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IContactService, ContactService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
