@@ -1,0 +1,28 @@
+﻿<div class="container my-5">
+    <h1 class="text-center">Contact Management</h1>
+    <p class="text-center">Upload your CSV file here</p>
+    <div style="text-align: center;">
+        <button id="uploadCsvButton" class="btn btn-primary mb-4">Upload CSV</button>
+        <input type="file" id="csvFileInput" style="display: none;">
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID <button class="btn btn-sm btn-light sort" data-column="id" data-order="asc">↑↓</button></th>
+                <th>Name <button class="btn btn-sm btn-light sort" data-column="name" data-order="asc">↑↓</button></th>
+                <th>Date of birth <button class="btn btn-sm btn-light sort" data-column="dateOfBirth" data-order="asc">↑↓</button></th>
+                <th>Is Married<button class="btn btn-sm btn-light sort" data-column="isMarried" data-order="asc">↑↓</button></th>
+                <th>Phone <button class="btn btn-sm btn-light sort" data-column="phone" data-order="asc">↑↓</button></th>
+                <th>Salary<button class="btn btn-sm btn-light sort" data-column="salary" data-order="asc">↑↓</button></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="contactsTableBody">
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/contacts.js"></script>
+}

@@ -23,7 +23,7 @@ namespace ContactManager.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadCsv([FromBody] IFormFile file)
+        public async Task<IActionResult> UploadCsv([FromForm] IFormFile file)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace ContactManager.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteContact(int id)
         {
             var isDeleted = await _contactService.DeleteAsync(id);
             if (!isDeleted)
@@ -54,15 +54,13 @@ namespace ContactManager.Controllers
             {
                 return BadRequest(ModelState);
             }
+            
+            var isUpdated = await _contactService.UpdateAsync(contactDTO);
 
-            var contact = await _contactService.GetContactByIdAsync(contactDTO.Id);
-
-            if (contact == null)
+            if(!isUpdated)
             {
-                return NotFound();
+                return NotFound(new { Message = "Contact not found" });
             }
-
-            await _contactService.UpdateAsync(contactDTO);
 
             return Ok(new { Message = "Contact updated successfully" });
         }

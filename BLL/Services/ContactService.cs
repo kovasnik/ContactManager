@@ -48,10 +48,8 @@ namespace ContactManager.BLL.Services
                 {
                     throw new FormatException($"Error parsing CSV line: {line}. Details: {ex.Message}");
                 }
-
-                await _contactRepository.AddRangeAsync(contacts);
-
             }
+            await _contactRepository.AddRangeAsync(contacts);
         }
 
         public async Task<IEnumerable<Contact>> GetAllContactsAsync()
@@ -72,10 +70,18 @@ namespace ContactManager.BLL.Services
             return true;
         }
 
-        public async Task UpdateAsync(ContactDTO contactDTO)
+        public async Task<bool> UpdateAsync(ContactDTO contactDTO)
         {
-            var contact  = _mapper.Map<Contact>(contactDTO);
+            var contact = await GetContactByIdAsync(contactDTO.Id);
+
+            if (contact == null)
+            {
+                return false;
+            }
+
+            _mapper.Map(contactDTO, contact);
             await _contactRepository.UpdateAsync(contact);
+            return true;
         }
 
         public async Task<Contact> GetContactByIdAsync(int id)

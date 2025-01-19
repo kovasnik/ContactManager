@@ -10,6 +10,6 @@ namespace ContactManager.BLL.Interfaces
         Task<Contact> GetContactByIdAsync(int id);
         Task ProcessCsvFileAsync(IFormFile csvFile);
         Task<bool> DeleteAsync(int id);
-        Task UpdateAsync(ContactDTO contactDTO);
+        Task<bool> UpdateAsync(ContactDTO contactDTO);
     }
 }
